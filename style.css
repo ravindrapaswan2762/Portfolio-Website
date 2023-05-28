@@ -240,107 +240,7 @@ body{
     background-color: #80808078;
     color: white;
 }
-
-
-
-/*------------------------------- Work Experiece*/
-/*.box-header{
-	display: flex;
-	width: 97%;
-	height: 55%;
-	margin: 1%;
-	border: 1px solid black;
-}
-.box-header div{
-	display: flex;
-	
-}
-.box-logo{
-	height: 0%;
-	width: 3%;
-	margin-top: 7%;
-	margin-left: 3%;
-	padding: 5%;
-	border: 1px solid black;
-}
-.logo-side{
-	position: relative;
-	height: 50px;
-	width: 62%;
-	margin: 5px;
-	left: 8% !important;
-	padding: 5%;
-	border: 1px solid black;
-}
-.box-content{
-	width: 97%;
-	height: 45%;
-	margin: 1%;
-	border: 1px solid black;
-}
-.paira{
-	height: 10%;
-	width: 10%;
-	padding: 10px;
-	border: 1px solid black;
-}*/
-/*---------------------*/
-/*.timeline{
-	position: relative;
-	width: 75%;
-	border: 2px solid black;
-}
-.timeline-box{
-	position: relative;
-	width: 40%;
-	border: 2px solid black;
-	left: 5%;
-	min-height: 150px;
-	margin: 5px;
-}
-
-.timeline-box:nth-child(2n) {
-	left: 53%;
-}
-.timeline-devider{
-	position: absolute;
-	height: 75%;
-	width: 0px;
-	top: 10%;
-	left: 50%;
-	border: 2px dashed lightgray;
-}
-.timeline-traveler{
-	position: sticky;
-	transform: rotate(90deg);
-	top: 25%;
-	z-index: 2;
-}
-.fa-plane:before {
-    color: #2857A4;
-}
-.timeline-box:nth-child(2n+1)::after{
-	content: '';
-	position: absolute;
-	top: 35%;
-	right: -12.5%;
-	border-radius: 50%;
-	height: 0.5rem;
-	width: 0.5rem;
-	background-color: gray;
-	z-index: 1;
-}
-.timeline-box:nth-child(2n)::after{
-	content: '';
-	position: absolute;
-	top: 35%;
-	left: -9.2%;
-	border-radius: 50%;
-	height: 0.5rem;
-	width: 0.5rem;
-	background-color: gray;
-	z-index: 1;
-}*/
+/*------------------------TIMELINE*/
 .timeline {
     position: relative;
     width: 75%;
@@ -394,29 +294,53 @@ body{
 .timeline-logo > img {
     width: 100%;
 }
-
-#timeline-divider {
+/*------*/
+#timeline-divider1 {
     position: absolute;
     width: 0;
     top: 10%;
     left: 50%;
     border: 1px dashed #0096fa6b;
-    height: 66%;
+    height: 76%;
     color: #433E3F;
 }
 
-#timeline-divider .timeline-traveller {
+#timeline-divider1 .timeline-traveller {
     position: sticky;
     top: 135px;
     z-index: 2;
 }
 
-#timeline-divider i {
+#timeline-divider1 i {
     transform: rotate(90deg);
     margin-top: -35px;
     display: block;
     color: #2857a4;
 }
+/*---------*/
+#timeline-divider2 {
+    position: absolute;
+    width: 0;
+    top: 10%;
+    left: 50%;
+    border: 1px dashed #0096fa6b;
+    height: 64%;
+    color: #433E3F;
+}
+
+#timeline-divider2 .timeline-traveller {
+    position: sticky;
+    top: 135px;
+    z-index: 2;
+}
+
+#timeline-divider2 i {
+    transform: rotate(90deg);
+    margin-top: -35px;
+    display: block;
+    color: #2857a4;
+}
+/*---------*/
 
 .experience-designation {
     font-size: 1.4rem;
@@ -644,7 +568,9 @@ section:nth-child(2n+1){
 }
 
 
-/*--------------------------------------------------------------------------------------*/
+/*---------------------MEDIA QUERY----------------------------------------------------------------*/
+
+
 @media only screen and (max-width: 572px) {
     
     .timeline-box {
@@ -665,7 +591,7 @@ section:nth-child(2n+1){
 
 
 @media only screen and (max-width: 768px) {
-
+	
 
     .timeline-box {
         width: 90%;
@@ -673,10 +599,14 @@ section:nth-child(2n+1){
     }
 
     .timeline-box::after {
-        left: -9.3% !important;
+        left: -10.2% !important;
     }
 
-    #timeline-divider {
+    #timeline-divider1 {
+        top: 10%;
+        left: 2%;
+    }
+    #timeline-divider2 {
         top: 10%;
         left: 2%;
     }
@@ -699,6 +629,19 @@ section:nth-child(2n+1){
         margin: 10%;
     }
 
+    #contact {
+	    background-color: #0abcf9;
+	    background-image: linear-gradient(50deg, #2857a4 0%, #403066 74%);
+	    color: white;
+	    padding-bottom: 236px;
+	}
+	#contact .social-icons li a i {
+	    font-size: 1.2rem;
+	    margin: 40px -32px -19px 11px;
+	    padding: -13px 13px 65px 17px;
+	    margin-top: 80%;
+	}
+
 }
 
 
@@ -706,12 +649,20 @@ section:nth-child(2n+1){
 	/*#my-details-container {
 	    margin-top: -60px;
 	}*/
+	.timeline-logo {
+	    position: absolute;
+	    width: 50px;
+	    overflow: hidden;
+	    margin-top: 20px;
+	    font-size: 22px;
+	    left: -5px;
+	}
 
 	#contact {
 	    height: 130vh;
 	}
 	.footerarea {
-	    margin-top: -136px;
+	    margin-top: -52px;
 	}
 	.horizontal-list li a {
 	    color: white;
@@ -719,3 +670,4 @@ section:nth-child(2n+1){
 	    margin: 10pxpx;
 	}
 }
+
