@@ -1,54 +1,67 @@
- 
+// ------------------------------------------------------------------------------- Mobile menu toggle
+var menuToggle = document.getElementById('menu-toggle');
+var mobileMenu = document.getElementById('mobile-menu');
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', function () {
+    var isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
 // ------------------------------------------------------------------------------- Smooth Scroll Bar
 var navMenuAnchorTag = document.querySelectorAll('.nav-menu a');
-console.log(navMenuAnchorTag);
 
 for (var i = 0; i < navMenuAnchorTag.length; i++) {
-  navMenuAnchorTag[i].addEventListener('click', function(event) {
+  navMenuAnchorTag[i].addEventListener('click', function (event) {
     event.preventDefault();
     var targetSectionID = this.textContent.trim().toLowerCase();
-    console.log("targetSectionID", targetSectionID);
+
+    if (targetSectionID === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     var targetSection = document.getElementById(targetSectionID);
-    console.log("targetSection", targetSection);
+    if (!targetSection) return;
 
-    var interval = setInterval(function() {
-      // Gives section position as an object
-      var targetSectionCoordinates = targetSection.getBoundingClientRect();
-      console.log("targetSectionCoordinates", targetSectionCoordinates)
-
-      if (targetSectionCoordinates.top <= 0 || targetSectionCoordinates.top==90) {
-        clearInterval(interval);
-        return;
-      }
-      window.scrollBy(0, 50);
-    }, 20);
+    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
 
 // ------------------------------------------------------------------------------   Progress Bars
 
-// handle scroll bar event on window
-// chech the skills sections container is visible or not
-// ensure that initial width of colored skill divsis zeero -> initialised/reset to 0 width value
-// start animation on every skill -> increase skill width from 0 to skill level at regular intervals
-// store skill level -> html with the help data attribute
+// handle scroll event on window
+// check whether the skills section container is visible
+// reset all bar widths to 0 on entry, then animate each bar to its target width
+// target width is stored in the data-bar-width attribute
 
-var progressBar = document.querySelectorAll('.skill-progress > div');
+var progressBar = document.querySelectorAll('.skill-fill');
 var skillsContainer = document.getElementById('skill-container');
-window.addEventListener('scroll', checkScroll);
 var animationDone = false;
 
-function initializedBar(){
-  for(let bar of progressBar){
+if (skillsContainer) {
+  window.addEventListener('scroll', checkScroll);
+}
+
+function initializedBar() {
+  for (let bar of progressBar) {
     bar.style.width = 0 + '%';
   }
 }
 
-function fillBar(){
-  for(let bar of progressBar){
+function fillBar() {
+  for (let bar of progressBar) {
     let targetWidth = bar.getAttribute('data-bar-width');
     let currentWidth = 0;
-    let interval = setInterval(function(){
+    let interval = setInterval(function () {
       if (currentWidth > targetWidth) {
         clearInterval(interval);
         return;
@@ -59,19 +72,15 @@ function fillBar(){
   }
 }
 
-function checkScroll(){
-  // i have to check that whether container is visible
+function checkScroll() {
   var coordinates = skillsContainer.getBoundingClientRect();
   if (!animationDone && coordinates.top <= window.innerHeight) {
-    console.log('Skill Section Visible');
     fillBar();
     animationDone = true;
-  }
-  else if(coordinates.top > window.innerHeight){
+  } else if (coordinates.top > window.innerHeight) {
     animationDone = false;
     initializedBar();
-  }
-  else if(coordinates.bottom < 0){
+  } else if (coordinates.bottom < 0) {
     animationDone = false;
     initializedBar();
   }
